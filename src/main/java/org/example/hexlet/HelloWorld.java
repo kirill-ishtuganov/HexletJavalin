@@ -4,7 +4,6 @@ import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinJte;
 import org.example.hexlet.dto.courses.CoursePage;
 import org.example.hexlet.dto.courses.CoursesPage;
-
 import static io.javalin.rendering.template.TemplateUtil.model;
 import static org.example.hexlet.Data.getCourse;
 import static org.example.hexlet.Data.getCourses;

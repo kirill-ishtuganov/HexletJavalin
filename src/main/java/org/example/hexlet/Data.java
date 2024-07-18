@@ -8,9 +8,9 @@ import java.util.List;
 public class Data {
 
     private static final List<Course> COURSES = new ArrayList<>(List.of(
-            new Course("Java", "Java Developer"),
-            new Course("PHP", "PHP Developer"),
-            new Course("JavaScript", "JavaScript Developer")));
+            new Course(0,"Java", "Java Developer"),
+            new Course(1,"PHP", "PHP Developer"),
+            new Course(2,"JavaScript", "JavaScript Developer")));
 
     public static List<Course> getCourses() {
         return new ArrayList<>(COURSES);

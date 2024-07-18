@@ -1,23 +1,26 @@
 @import org.example.hexlet.dto.courses.CoursesPage
 @param CoursesPage page
 
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Хекслет</title>
-</head>
-<body>
-<h1>${page.getHeader()}</h1>
-@if(page.getCourses().isEmpty())
-    <p>Пока не добавлено ни одного курса</p>
-@else
-    @for(var course : page.getCourses())
-        <div>
-            <h2><a href="/courses/${course.getId()}">${course.getName()}</a></h2>
-            <p>${course.getDescription()}</p>
-        </div>
-    @endfor
-@endif
-</body>
-</html>
+@template.layout.page(
+    title = "Courses",
+    content = @`
+        <h1>${page.getHeader()}</h1>
+        @if(page.getCourses().isEmpty())
+            <p>Пока не добавлено ни одного курса</p>
+        @else
+            <table>
+                @for(var course : page.getCourses())
+                    <tr>
+                        <td>
+                            <a href="/courses/${course.getId()}">${course.getName()}</a>
+                            <p>${course.getDescription()}</p>
+                        </td>
+                    </tr>
+                @endfor
+            </table>
+        @endif
+    `,
+    footer = @`
+        <a href="https://github.com/kirill-ishtuganov">My GitHub</a>
+    `
+)
