@@ -8,7 +8,7 @@
         @if(page.getCourses().isEmpty())
             <p>Пока не добавлено ни одного курса</p>
         @else
-            <table>
+            <table class="table table-striped">
                 @for(var course : page.getCourses())
                     <tr>
                         <td>
@@ -19,8 +19,5 @@
                 @endfor
             </table>
         @endif
-    `,
-    footer = @`
-        <a href="https://github.com/kirill-ishtuganov">My GitHub</a>
     `
 )

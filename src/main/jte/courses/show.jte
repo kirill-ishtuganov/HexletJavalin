@@ -6,8 +6,5 @@ title = "Course",
 content = @`
     <h1>${page.getCourse().getName()}</h1>
     <p>${page.getCourse().getDescription()}</p>
-`,
-footer = @`
-    <a href="https://github.com/kirill-ishtuganov">My GitHub</a>
 `
 )

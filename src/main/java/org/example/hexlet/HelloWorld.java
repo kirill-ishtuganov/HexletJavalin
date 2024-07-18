@@ -7,6 +7,7 @@ import org.example.hexlet.dto.courses.CoursesPage;
 import static io.javalin.rendering.template.TemplateUtil.model;
 import static org.example.hexlet.Data.getCourse;
 import static org.example.hexlet.Data.getCourses;
+import org.apache.commons.text.StringEscapeUtils;
 
 public class HelloWorld {
     public static void main(String[] args) {
@@ -15,8 +16,14 @@ public class HelloWorld {
             config.fileRenderer(new JavalinJte());
         });
         app.get("/", ctx -> ctx.render("index.jte"));
-        app.get("/users", ctx -> ctx.result("GET /users"));
         app.post("/users", ctx -> ctx.result("POST /users"));
+
+        app.get("/users/{id}", ctx -> {
+            var id = ctx.pathParam("id");
+            var escapedId = StringEscapeUtils.escapeHtml4(id);
+            ctx.contentType("text/html");
+            ctx.result(escapedId);
+        });
 
         app.get("/hello", ctx -> {
             var name = ctx.queryParamAsClass("name", String.class).getOrDefault("World");

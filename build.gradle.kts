@@ -28,6 +28,7 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.34")
     testCompileOnly("org.projectlombok:lombok:1.18.34")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.34")
+    implementation("org.apache.commons:commons-text:1.12.0")
 }
 
 tasks.test {
