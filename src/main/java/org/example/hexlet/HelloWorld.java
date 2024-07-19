@@ -6,8 +6,11 @@ import org.example.hexlet.dto.courses.CoursePage;
 import org.example.hexlet.dto.courses.CoursesPage;
 import static io.javalin.rendering.template.TemplateUtil.model;
 import static org.example.hexlet.Data.getCourse;
-import static org.example.hexlet.Data.getCourses;
 import org.apache.commons.text.StringEscapeUtils;
+import org.example.hexlet.model.Course;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class HelloWorld {
     public static void main(String[] args) {
@@ -31,9 +34,10 @@ public class HelloWorld {
         });
 
         app.get("/courses", ctx -> {
-            var courses = getCourses();
-            var header = "Курсы по программированию";
-            var page = new CoursesPage(courses, header);
+            var term = ctx.queryParam("term");
+            var description = ctx.queryParam("description");
+            var courses = findCourses(term, description);
+            var page = new CoursesPage(courses, term, description);
             ctx.render("courses/index.jte", model("page", page));
         });
 
@@ -44,5 +48,31 @@ public class HelloWorld {
             ctx.render("courses/show.jte", model("page", page));
         });
         app.start(7070);
+    }
+
+    public static List<Course> findCourses(String term, String description) {
+
+        ArrayList<Course> result = new ArrayList<>();
+        if (term != null) {
+            for (var course : Data.getCourses()) {
+                if (course.getName().toLowerCase().contains(term.toLowerCase())) {
+                    result.add(course);
+                }
+            }
+        } else {
+            result.addAll(Data.getCourses());
+        }
+
+        if (description != null) {
+            for (var course : Data.getCourses()) {
+                if (course.getDescription().toLowerCase().contains(description.toLowerCase())) {
+                    result.add(course);
+                }
+            }
+        } else {
+            result.addAll(Data.getCourses());
+        }
+
+        return result.stream().distinct().collect(Collectors.toList());
     }
 }
