@@ -20,6 +20,8 @@
         <ul class="nav nav-pills">
             <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
             <li class="nav-item"><a href="/courses" class="nav-link">Courses</a></li>
+            <li class="nav-item"><a href="/users" class="nav-link">Users</a></li>
+            <li class="nav-item"><a href="/users/build" class="nav-link">Registration</a></li>
         </ul>
     </header>
 </div>
