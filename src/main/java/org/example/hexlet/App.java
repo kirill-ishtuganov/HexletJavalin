@@ -2,10 +2,13 @@ package org.example.hexlet;
 
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinJte;
+import io.javalin.validation.ValidationException;
 import org.example.hexlet.dto.courses.CoursePage;
 import org.example.hexlet.dto.courses.CoursesPage;
 import static io.javalin.rendering.template.TemplateUtil.model;
 import static org.example.hexlet.Data.getCourse;
+
+import org.example.hexlet.dto.users.BuildUserPage;
 import org.example.hexlet.dto.users.UsersPage;
 import org.example.hexlet.model.Course;
 import java.util.ArrayList;
@@ -32,15 +35,26 @@ public class App {
         app.post("/users", ctx -> {
             var name = ctx.formParam("name").trim();
             var email = ctx.formParam("email").trim().toLowerCase();
-            var password = ctx.formParam("password");
-            var passwordConfirmation = ctx.formParam("passwordConfirmation");
 
-            var user = new User(name, email, password);
-            UsersRepository.save(user);
-            ctx.redirect("/users");
+            try {
+                var passwordConfirmation = ctx.formParam("passwordConfirmation");
+                var password = ctx.formParamAsClass("password", String.class)
+                        .check(value -> value.equals(passwordConfirmation), "Пароли не совпадают")
+                        .check(value -> value.length() > 2, "У пароля недостаточная длина")
+                        .get();
+                var user = new User(name, email, password);
+                UsersRepository.save(user);
+                ctx.redirect("/users");
+            } catch (ValidationException e) {
+                var page = new BuildUserPage(name, email, e.getErrors());
+                ctx.render("users/build.jte", model("page", page));
+            }
         });
 
-        app.get("/users/build", ctx -> ctx.render("users/build.jte"));
+        app.get("/users/build", ctx -> {
+            var page = new BuildUserPage();
+            ctx.render("users/build.jte", model("page", page));
+        });
 
         app.get("/hello", ctx -> {
             var name = ctx.queryParamAsClass("name", String.class).getOrDefault("World");
