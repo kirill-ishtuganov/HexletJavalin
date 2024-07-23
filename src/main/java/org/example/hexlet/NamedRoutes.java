@@ -14,8 +14,16 @@ public class NamedRoutes {
         return "/u/build";
     }
 
+    public static String editUserPath() {
+        return "/u/edit/{id}";
+    }
+
     public static String coursesPath() {
         return "/courses";
+    }
+
+    public static String coursePath() {
+        return "/courses/{id}";
     }
 
     // Это нужно, чтобы не преобразовывать типы снаружи

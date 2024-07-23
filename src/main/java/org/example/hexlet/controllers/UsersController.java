@@ -1,4 +1,4 @@
-package org.example.hexlet.controller;
+package org.example.hexlet.controllers;
 
 import static io.javalin.rendering.template.TemplateUtil.model;
 import io.javalin.validation.ValidationException;
