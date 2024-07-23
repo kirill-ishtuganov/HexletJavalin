@@ -3,11 +3,11 @@ package org.example.hexlet;
 public class NamedRoutes {
 
     public static String usersPath() {
-        return "/users";
+        return "/u";
     }
 
     public static String buildUserPath() {
-        return "/users/build";
+        return "/u/build";
     }
 
     public static String coursesPath() {

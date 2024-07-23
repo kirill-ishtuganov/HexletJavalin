@@ -1,4 +1,5 @@
 @import gg.jte.Content
+@import org.example.hexlet.NamedRoutes
 @param Content content
 @param String title
 
@@ -19,9 +20,9 @@
     <header class="d-flex justify-content-center py-3">
         <ul class="nav nav-pills">
             <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
-            <li class="nav-item"><a href="/courses" class="nav-link">Courses</a></li>
-            <li class="nav-item"><a href="/users" class="nav-link">Users</a></li>
-            <li class="nav-item"><a href="/users/build" class="nav-link">Registration</a></li>
+            <li class="nav-item"><a href="${NamedRoutes.coursesPath()}" class="nav-link">Courses</a></li>
+            <li class="nav-item"><a href="${NamedRoutes.usersPath()}" class="nav-link">Users</a></li>
+            <li class="nav-item"><a href="${NamedRoutes.buildUserPath()}" class="nav-link">Registration</a></li>
         </ul>
     </header>
 </div>

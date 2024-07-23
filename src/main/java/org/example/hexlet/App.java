@@ -43,7 +43,7 @@ public class App {
                         .get();
                 var user = new User(name, email, password);
                 UsersRepository.save(user);
-                ctx.redirect("/users");
+                ctx.redirect(NamedRoutes.usersPath());
             } catch (ValidationException e) {
                 var page = new BuildUserPage(name, email, e.getErrors());
                 ctx.render("users/build.jte", model("page", page));
