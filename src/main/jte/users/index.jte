@@ -1,3 +1,4 @@
+@import org.example.hexlet.NamedRoutes
 @import org.example.hexlet.dto.users.UsersPage
 @import org.example.hexlet.UsersRepository
 @param UsersPage page
@@ -6,7 +7,7 @@
 title = "Users",
 content = @`
     <h1>Programing Courses</h1>
-    <form action="/users?term=" method="get">
+    <form action="${NamedRoutes.usersPath()}?term=" method="get">
         <input type="search" name="term" value="${page.getTerm()}" placeholder="Name" />
         <input type="submit" value="Search" />
     </form>

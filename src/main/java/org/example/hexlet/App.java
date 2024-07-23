@@ -7,7 +7,6 @@ import org.example.hexlet.dto.courses.CoursePage;
 import org.example.hexlet.dto.courses.CoursesPage;
 import static io.javalin.rendering.template.TemplateUtil.model;
 import static org.example.hexlet.Data.getCourse;
-
 import org.example.hexlet.dto.users.BuildUserPage;
 import org.example.hexlet.dto.users.UsersPage;
 import org.example.hexlet.model.Course;
@@ -26,13 +25,13 @@ public class App {
 
         app.get("/", ctx -> ctx.render("index.jte"));
 
-        app.get("/users", ctx -> {
+        app.get(NamedRoutes.usersPath(), ctx -> {
             var term = ctx.queryParam("term");
             var page = new UsersPage(term);
             ctx.render("users/index.jte", model("page", page));
         });
 
-        app.post("/users", ctx -> {
+        app.post(NamedRoutes.usersPath(), ctx -> {
             var name = ctx.formParam("name").trim();
             var email = ctx.formParam("email").trim().toLowerCase();
 
@@ -51,7 +50,7 @@ public class App {
             }
         });
 
-        app.get("/users/build", ctx -> {
+        app.get(NamedRoutes.buildUserPath(), ctx -> {
             var page = new BuildUserPage();
             ctx.render("users/build.jte", model("page", page));
         });
@@ -61,7 +60,7 @@ public class App {
             ctx.result("Hello, " + name + "!");
         });
 
-        app.get("/courses", ctx -> {
+        app.get(NamedRoutes.coursesPath(), ctx -> {
             var term = ctx.queryParam("term");
             var description = ctx.queryParam("description");
             var courses = findCourses(term, description);
@@ -69,7 +68,7 @@ public class App {
             ctx.render("courses/index.jte", model("page", page));
         });
 
-        app.get("/courses/{id}", ctx -> {
+        app.get(NamedRoutes.coursePath("{id}"), ctx -> {
             var id = ctx.pathParam("id");
             var course = getCourse(Integer.parseInt(id));
             var page = new CoursePage(course);
