@@ -18,7 +18,7 @@ content = @`
 <form action="${NamedRoutes.usersPath()}" method="post">
     <div>
         <label>
-            Имя
+            Name
             <input type="text" name="name" value="${page.getName()}" />
         </label>
     </div>
@@ -30,17 +30,17 @@ content = @`
     </div>
     <div>
         <label>
-            Пароль
+            Password
             <input type="password" required name="password" />
         </label>
     </div>
     <div>
         <label>
-            Подтверждение пароля
+            Password confirmation
             <input type="password" required name="passwordConfirmation" />
         </label>
     </div>
-    <input type="submit" value="Зарегистрировать" />
+    <input type="submit" value="Register" />
 </form>
 `
 )

@@ -6,6 +6,10 @@ public class NamedRoutes {
         return "/u";
     }
 
+    public static String userPath() {
+        return "/u/{id}";
+    }
+
     public static String buildUserPath() {
         return "/u/build";
     }

@@ -1,7 +1,7 @@
 package gg.jte.generated.ondemand.users;
 import org.example.hexlet.NamedRoutes;
 import org.example.hexlet.dto.users.UsersPage;
-import org.example.hexlet.UsersRepository;
+import org.example.hexlet.repository.UserRepository;
 public final class JteindexGenerated {
 	public static final String JTE_NAME = "users/index.jte";
 	public static final int[] JTE_LINE_INFO = {0,0,1,2,3,3,3,5,5,8,8,10,10,10,10,11,11,11,11,11,11,11,11,11,14,14,16,16,18,18,20,20,20,22,22,22,25,25,25,28,28,30,30,31,31,31,32,32,32,3,3,3,3};
@@ -9,7 +9,7 @@ public final class JteindexGenerated {
 		jteOutput.writeContent("\n");
 		gg.jte.generated.ondemand.layout.JtepageGenerated.render(jteOutput, jteHtmlInterceptor, new gg.jte.html.HtmlContent() {
 			public void writeTo(gg.jte.html.HtmlTemplateOutput jteOutput) {
-				jteOutput.writeContent("\n    <h1>Programing Courses</h1>\n    <form action=\"");
+				jteOutput.writeContent("\n    <h1>Users</h1>\n    <form action=\"");
 				jteOutput.setContext("form", "action");
 				jteOutput.writeUserContent(NamedRoutes.usersPath());
 				jteOutput.setContext("form", null);
@@ -23,11 +23,11 @@ public final class JteindexGenerated {
 					jteOutput.writeContent("\"");
 				}
 				jteOutput.writeContent(" placeholder=\"Name\" />\n        <input type=\"submit\" value=\"Search\" />\n    </form>\n    ");
-				if (UsersRepository.size() == 0) {
+				if (UserRepository.size() == 0) {
 					jteOutput.writeContent("\n        <p>Users not found</p>\n    ");
 				} else {
 					jteOutput.writeContent("\n        <table class=\"table table-striped\">\n            ");
-					for (var user : UsersRepository.search(page.getTerm())) {
+					for (var user : UserRepository.search(page.getTerm())) {
 						jteOutput.writeContent("\n                <tr>\n                    <td>");
 						jteOutput.setContext("td", null);
 						jteOutput.writeUserContent(user.getId());

@@ -32,7 +32,7 @@ public final class JtebuildGenerated {
 					jteOutput.setContext("form", null);
 					jteOutput.writeContent("\"");
 				}
-				jteOutput.writeContent(" method=\"post\">\n    <div>\n        <label>\n            Имя\n            <input type=\"text\" name=\"name\"");
+				jteOutput.writeContent(" method=\"post\">\n    <div>\n        <label>\n            Name\n            <input type=\"text\" name=\"name\"");
 				var __jte_html_attribute_1 = page.getName();
 				if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_1)) {
 					jteOutput.writeContent(" value=\"");
@@ -50,7 +50,7 @@ public final class JtebuildGenerated {
 					jteOutput.setContext("input", null);
 					jteOutput.writeContent("\"");
 				}
-				jteOutput.writeContent(" />\n        </label>\n    </div>\n    <div>\n        <label>\n            Пароль\n            <input type=\"password\" required name=\"password\" />\n        </label>\n    </div>\n    <div>\n        <label>\n            Подтверждение пароля\n            <input type=\"password\" required name=\"passwordConfirmation\" />\n        </label>\n    </div>\n    <input type=\"submit\" value=\"Зарегистрировать\" />\n</form>\n");
+				jteOutput.writeContent(" />\n        </label>\n    </div>\n    <div>\n        <label>\n            Password\n            <input type=\"password\" required name=\"password\" />\n        </label>\n    </div>\n    <div>\n        <label>\n            Password confirmation\n            <input type=\"password\" required name=\"passwordConfirmation\" />\n        </label>\n    </div>\n    <input type=\"submit\" value=\"Register\" />\n</form>\n");
 			}
 		}, "Registration");
 		jteOutput.writeContent("\n");

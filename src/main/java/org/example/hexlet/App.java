@@ -2,19 +2,16 @@ package org.example.hexlet;
 
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinJte;
-import io.javalin.validation.ValidationException;
+import org.example.hexlet.controller.UsersController;
 import org.example.hexlet.dto.courses.CoursePage;
 import org.example.hexlet.dto.courses.CoursesPage;
 import static io.javalin.rendering.template.TemplateUtil.model;
 import static org.example.hexlet.Data.getCourse;
-import org.example.hexlet.dto.users.BuildUserPage;
-import org.example.hexlet.dto.users.UsersPage;
 import org.example.hexlet.model.Course;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import org.example.hexlet.model.User;
 
 public class App {
     public static void main(String[] args) {
@@ -24,41 +21,11 @@ public class App {
         });
 
         app.get("/", ctx -> ctx.render("index.jte"));
-
-        app.get(NamedRoutes.usersPath(), ctx -> {
-            var term = ctx.queryParam("term");
-            var page = new UsersPage(term);
-            ctx.render("users/index.jte", model("page", page));
-        });
-
-        app.post(NamedRoutes.usersPath(), ctx -> {
-            var name = ctx.formParam("name").trim();
-            var email = ctx.formParam("email").trim().toLowerCase();
-
-            try {
-                var passwordConfirmation = ctx.formParam("passwordConfirmation");
-                var password = ctx.formParamAsClass("password", String.class)
-                        .check(value -> value.equals(passwordConfirmation), "Пароли не совпадают")
-                        .check(value -> value.length() > 2, "У пароля недостаточная длина")
-                        .get();
-                var user = new User(name, email, password);
-                UsersRepository.save(user);
-                ctx.redirect(NamedRoutes.usersPath());
-            } catch (ValidationException e) {
-                var page = new BuildUserPage(name, email, e.getErrors());
-                ctx.render("users/build.jte", model("page", page));
-            }
-        });
-
-        app.get(NamedRoutes.buildUserPath(), ctx -> {
-            var page = new BuildUserPage();
-            ctx.render("users/build.jte", model("page", page));
-        });
-
-        app.get("/hello", ctx -> {
-            var name = ctx.queryParamAsClass("name", String.class).getOrDefault("World");
-            ctx.result("Hello, " + name + "!");
-        });
+        app.get(NamedRoutes.usersPath(), UsersController::index);
+        app.get(NamedRoutes.buildUserPath(), UsersController::build);
+        app.get(NamedRoutes.userPath(), UsersController::show);
+        app.post(NamedRoutes.usersPath(), UsersController::create);
+        app.patch(NamedRoutes.userPath(), UsersController::update);
 
         app.get(NamedRoutes.coursesPath(), ctx -> {
             var term = ctx.queryParam("term");

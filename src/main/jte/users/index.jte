@@ -1,21 +1,21 @@
 @import org.example.hexlet.NamedRoutes
 @import org.example.hexlet.dto.users.UsersPage
-@import org.example.hexlet.UsersRepository
+@import org.example.hexlet.repository.UserRepository
 @param UsersPage page
 
 @template.layout.page(
 title = "Users",
 content = @`
-    <h1>Programing Courses</h1>
+    <h1>Users</h1>
     <form action="${NamedRoutes.usersPath()}?term=" method="get">
         <input type="search" name="term" value="${page.getTerm()}" placeholder="Name" />
         <input type="submit" value="Search" />
     </form>
-    @if(UsersRepository.size() == 0)
+    @if(UserRepository.size() == 0)
         <p>Users not found</p>
     @else
         <table class="table table-striped">
-            @for(var user : UsersRepository.search(page.getTerm()))
+            @for(var user : UserRepository.search(page.getTerm()))
                 <tr>
                     <td>${user.getId()}</td>
                     <td>

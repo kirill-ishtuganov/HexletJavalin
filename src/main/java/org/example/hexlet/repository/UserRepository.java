@@ -1,12 +1,13 @@
-package org.example.hexlet;
+package org.example.hexlet.repository;
 
+import io.javalin.http.NotFoundResponse;
 import org.example.hexlet.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class UsersRepository {
+public class UserRepository {
     private static List<User> entities = new ArrayList<>();
 
     public static void save(User user) {
@@ -38,5 +39,10 @@ public class UsersRepository {
 
     public static int size() {
         return entities.size();
+    }
+
+    public static void delete(long id) {
+        entities.remove(find(id)
+                .orElseThrow(() -> new NotFoundResponse("Entity with id = " + id + " not found")));
     }
 }
