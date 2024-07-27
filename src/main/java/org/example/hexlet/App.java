@@ -13,13 +13,13 @@ public class App {
         });
 
         app.get("/", ctx -> ctx.render("index.jte"));
-        app.get(NamedRoutes.usersPath(), UsersController::index);
-        app.get(NamedRoutes.userPath(), UsersController::show);
         app.get(NamedRoutes.buildUserPath(), UsersController::build);
+        app.get(NamedRoutes.usersPath(), UsersController::index);
         app.post(NamedRoutes.usersPath(), UsersController::create);
         app.get(NamedRoutes.editUserPath(), UsersController::edit);
         app.patch(NamedRoutes.userPath(), UsersController::update);
         app.delete(NamedRoutes.userPath(), UsersController::destroy);
+        app.get(NamedRoutes.userPath(), UsersController::show);
 
         app.get(NamedRoutes.coursesPath(), CourseController::index);
         app.get(NamedRoutes.coursePath(), CourseController::show);

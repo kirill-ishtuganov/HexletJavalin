@@ -19,7 +19,7 @@ content = @`
                 <tr>
                     <td>${user.getId()}</td>
                     <td>
-                        <a>${user.getName()}</a>
+                        <a href="${NamedRoutes.userPath(user.getId())}">${user.getName()}</a>
                     </td>
                     <td>
                         <p>${user.getEmail()}</p>

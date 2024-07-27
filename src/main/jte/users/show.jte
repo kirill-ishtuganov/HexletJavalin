@@ -1,3 +1,4 @@
+@import org.example.hexlet.NamedRoutes
 @import org.example.hexlet.dto.users.UserPage
 @param UserPage page
 
@@ -9,6 +10,9 @@ content = @`
         </div>
         <div>
             <a>${page.getUser().getEmail()}</a>
+        </div>
+        <div>
+            <a href="${NamedRoutes.editUserPath(page.getUser().getId())}">edit</a>
         </div>
     `
 )

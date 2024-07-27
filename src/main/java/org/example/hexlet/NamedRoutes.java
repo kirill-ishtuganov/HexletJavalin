@@ -10,12 +10,20 @@ public class NamedRoutes {
         return "/u/{id}";
     }
 
+    public static String userPath(Long id) {
+        return "/u/" + id;
+    }
+
     public static String buildUserPath() {
         return "/u/build";
     }
 
     public static String editUserPath() {
         return "/u/edit/{id}";
+    }
+
+    public static String editUserPath(Long id) {
+        return "/u/edit/" + id;
     }
 
     public static String coursesPath() {
