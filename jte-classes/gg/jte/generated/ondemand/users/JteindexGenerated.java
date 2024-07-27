@@ -1,5 +1,5 @@
 package gg.jte.generated.ondemand.users;
-import org.example.hexlet.NamedRoutes;
+import org.example.hexlet.utilities.NamedRoutes;
 import org.example.hexlet.dto.users.UsersPage;
 import org.example.hexlet.repository.UserRepository;
 public final class JteindexGenerated {

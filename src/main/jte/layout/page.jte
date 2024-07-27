@@ -1,5 +1,5 @@
 @import gg.jte.Content
-@import org.example.hexlet.NamedRoutes
+@import org.example.hexlet.utilities.NamedRoutes
 @param Content content
 @param String title
 
@@ -27,7 +27,7 @@
     </header>
 </div>
 
-<div class="mx-auto p-4 py-md-5">
+<div class="mx-auto p-4 py-md-5" align="center">
     ${content}
 </div>
 

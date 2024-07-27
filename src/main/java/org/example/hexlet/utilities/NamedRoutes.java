@@ -1,6 +1,10 @@
-package org.example.hexlet;
+package org.example.hexlet.utilities;
 
 public class NamedRoutes {
+
+    public static String mainPath() {
+        return "/";
+    }
 
     public static String usersPath() {
         return "/u";
@@ -34,7 +38,6 @@ public class NamedRoutes {
         return "/courses/{id}";
     }
 
-    // Это нужно, чтобы не преобразовывать типы снаружи
     public static String coursePath(Long id) {
         return coursePath(String.valueOf(id));
     }

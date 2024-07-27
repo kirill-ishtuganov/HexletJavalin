@@ -3,7 +3,9 @@ package org.example.hexlet;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinJte;
 import org.example.hexlet.controllers.CourseController;
+import org.example.hexlet.controllers.RootController;
 import org.example.hexlet.controllers.UsersController;
+import org.example.hexlet.utilities.NamedRoutes;
 
 public class App {
     public static void main(String[] args) {
@@ -12,7 +14,7 @@ public class App {
             config.fileRenderer(new JavalinJte());
         });
 
-        app.get("/", ctx -> ctx.render("index.jte"));
+        app.get(NamedRoutes.mainPath(), RootController::index);
         app.get(NamedRoutes.buildUserPath(), UsersController::build);
         app.get(NamedRoutes.usersPath(), UsersController::index);
         app.post(NamedRoutes.usersPath(), UsersController::create);
@@ -20,7 +22,6 @@ public class App {
         app.patch(NamedRoutes.userPath(), UsersController::update);
         app.delete(NamedRoutes.userPath(), UsersController::destroy);
         app.get(NamedRoutes.userPath(), UsersController::show);
-
         app.get(NamedRoutes.coursesPath(), CourseController::index);
         app.get(NamedRoutes.coursePath(), CourseController::show);
 

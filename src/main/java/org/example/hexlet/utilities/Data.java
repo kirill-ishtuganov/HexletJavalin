@@ -1,4 +1,4 @@
-package org.example.hexlet;
+package org.example.hexlet.utilities;
 
 import org.example.hexlet.model.Course;
 

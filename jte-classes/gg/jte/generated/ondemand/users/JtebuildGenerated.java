@@ -1,5 +1,5 @@
 package gg.jte.generated.ondemand.users;
-import org.example.hexlet.NamedRoutes;
+import org.example.hexlet.utilities.NamedRoutes;
 import org.example.hexlet.dto.users.BuildUserPage;
 public final class JtebuildGenerated {
 	public static final String JTE_NAME = "users/build.jte";

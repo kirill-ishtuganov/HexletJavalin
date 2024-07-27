@@ -1,7 +1,7 @@
 package org.example.hexlet.controllers;
 
 import io.javalin.http.Context;
-import org.example.hexlet.Data;
+import org.example.hexlet.utilities.Data;
 import org.example.hexlet.dto.courses.CoursePage;
 import org.example.hexlet.dto.courses.CoursesPage;
 import org.example.hexlet.model.Course;
@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static io.javalin.rendering.template.TemplateUtil.model;
-import static org.example.hexlet.Data.getCourse;
+import static org.example.hexlet.utilities.Data.getCourse;
 
 public class CourseController {
 

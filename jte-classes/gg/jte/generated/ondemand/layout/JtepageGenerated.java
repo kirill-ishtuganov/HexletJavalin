@@ -1,6 +1,6 @@
 package gg.jte.generated.ondemand.layout;
 import gg.jte.Content;
-import org.example.hexlet.NamedRoutes;
+import org.example.hexlet.utilities.NamedRoutes;
 public final class JtepageGenerated {
 	public static final String JTE_NAME = "layout/page.jte";
 	public static final int[] JTE_LINE_INFO = {0,0,1,2,2,2,13,13,13,13,22,22,22,22,22,22,22,22,22,23,23,23,23,23,23,23,23,23,24,24,24,24,24,24,24,24,24,30,30,30,45,45,45,2,3,3,3,3};
@@ -35,7 +35,7 @@ public final class JtepageGenerated {
 			jteOutput.setContext("a", null);
 			jteOutput.writeContent("\"");
 		}
-		jteOutput.writeContent(" class=\"nav-link\">Registration</a></li>\n        </ul>\n    </header>\n</div>\n\n<div class=\"mx-auto p-4 py-md-5\">\n    ");
+		jteOutput.writeContent(" class=\"nav-link\">Registration</a></li>\n        </ul>\n    </header>\n</div>\n\n<div class=\"mx-auto p-4 py-md-5\" align=\"center\">\n    ");
 		jteOutput.setContext("div", null);
 		jteOutput.writeUserContent(content);
 		jteOutput.writeContent("\n</div>\n\n<div class=\"container\">\n    <footer class=\"d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top\">\n        <div class=\"col-md-4 d-flex align-items-center\">\n            <a href=\"/\" class=\"mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1\">\n                <svg class=\"bi\" width=\"30\" height=\"24\"><use xlink:href=\"#bootstrap\"/></svg>\n            </a>\n            <a href=\"https://github.com/kirill-ishtuganov\" class=\"text-muted\">My GitHub</a>\n        </div>\n    </footer>\n</div>\n</body>\n</html>\n");
