@@ -1,7 +1,8 @@
 FROM gradle:7.4.0-jdk17
 
-WORKDIR /app
+WORKDIR /bin
 
-RUN ./gradlew clean install
+COPY /bin .
 
+RUN gradle installDist
 CMD ./build/install/HexletJavalin/bin/HexletJavalin
