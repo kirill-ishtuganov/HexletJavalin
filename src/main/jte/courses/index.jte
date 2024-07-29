@@ -12,7 +12,10 @@
             <input type="submit" value="Search" />
         </form>
         @if(page.getCourses().isEmpty())
-            <p>Пока не добавлено ни одного курса</p>
+            <p>No courses have been added yet</p>
+            <div>
+                <a href="/courses/build">Create course</a>
+            </div>
         @else
             <table class="table table-striped">
                 @for(var course : page.getCourses())

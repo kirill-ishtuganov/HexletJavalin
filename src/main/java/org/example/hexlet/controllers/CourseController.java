@@ -1,66 +1,48 @@
 package org.example.hexlet.controllers;
 
 import io.javalin.http.Context;
-import org.example.hexlet.utilities.Data;
+import io.javalin.http.NotFoundResponse;
+import org.example.hexlet.dto.courses.BuildCoursePage;
+import org.example.hexlet.repository.CourseRepository;
 import org.example.hexlet.dto.courses.CoursePage;
 import org.example.hexlet.dto.courses.CoursesPage;
 import org.example.hexlet.model.Course;
+import org.example.hexlet.utilities.NamedRoutes;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.sql.SQLException;
 
 import static io.javalin.rendering.template.TemplateUtil.model;
-import static org.example.hexlet.utilities.Data.getCourse;
 
 public class CourseController {
 
-    public static void index(Context ctx) {
+    public static void index(Context ctx) throws SQLException {
+
         var term = ctx.queryParam("term");
         var description = ctx.queryParam("description");
-        var courses = findCourses(term, description);
+        var courses = CourseRepository.getEntities();
         var page = new CoursesPage(courses, term, description);
         ctx.render("courses/index.jte", model("page", page));
     }
 
-    public static void show(Context ctx) {
-        var id = ctx.pathParam("id");
-        var course = getCourse(Integer.parseInt(id));
+    public static void show(Context ctx) throws SQLException {
+        var id = ctx.pathParamAsClass("id", Long.class).get();
+        var course = CourseRepository.find(id)
+                .orElseThrow(() -> new NotFoundResponse("Course with id = " + id + " not found"));
         var page = new CoursePage(course);
         ctx.render("courses/show.jte", model("page", page));
     }
 
-    public static List<Course> findCourses(String term, String description) {
+    public static void build(Context ctx) {
+        var page = new BuildCoursePage();
+        ctx.render("courses/build.jte", model("page", page));
+    }
 
-        ArrayList<Course> result = new ArrayList<>();
-        if (term != null) {
-            for (var course : Data.getCourses()) {
-                if (course.getName().toLowerCase().contains(term.toLowerCase())) {
-                    result.add(course);
-                }
-            }
-        } else {
-            result.addAll(Data.getCourses());
-        }
+    public static void create(Context ctx) throws SQLException {
+        var name = ctx.formParam("name");
+        var description = ctx.formParam("description");
 
-        if (description != null) {
-            for (var course : Data.getCourses()) {
-                if (course.getDescription().toLowerCase().contains(description.toLowerCase())) {
-                    result.add(course);
-                }
-            }
-        } else {
-            result.addAll(Data.getCourses());
-        }
-
-        Map<Course, Long> map = result.
-                stream().collect(Collectors.groupingBy(n -> n, Collectors.counting()));
-        return  map.
-                entrySet().
-                stream().
-                filter(e -> e.getValue() > 1).
-                map(Map.Entry::getKey).
-                collect(Collectors.toList());
+        var course = new Course(name, description);
+        CourseRepository.save(course);
+        ctx.redirect(NamedRoutes.coursesPath());
     }
 }

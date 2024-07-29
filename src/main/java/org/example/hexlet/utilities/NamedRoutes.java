@@ -34,6 +34,10 @@ public class NamedRoutes {
         return "/courses";
     }
 
+    public static String buildCoursesPath() {
+        return "/courses/build";
+    }
+
     public static String coursePath() {
         return "/courses/{id}";
     }
