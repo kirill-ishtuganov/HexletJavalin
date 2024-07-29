@@ -19,10 +19,11 @@
 <div class="container">
     <header class="d-flex justify-content-center py-3">
         <ul class="nav nav-pills">
-            <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="${NamedRoutes.mainPath()}" class="nav-link active" aria-current="page">Home</a></li>
             <li class="nav-item"><a href="${NamedRoutes.coursesPath()}" class="nav-link">Courses</a></li>
             <li class="nav-item"><a href="${NamedRoutes.usersPath()}" class="nav-link">Users</a></li>
             <li class="nav-item"><a href="${NamedRoutes.buildUserPath()}" class="nav-link">Registration</a></li>
+            <li class="nav-item"><a href="${NamedRoutes.buildSessionPath()}" class="nav-link">Login</a></li>
         </ul>
     </header>
 </div>
